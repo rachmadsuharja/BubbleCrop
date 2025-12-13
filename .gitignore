@@ -1,0 +1,54 @@
+# =========================
+# Python Bytecode
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Virtual Environment
+# =========================
+venv/
+env/
+.venv/
+
+# =========================
+# IDE / Editor
+# =========================
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# =========================
+# Logs / Temp / Backup
+# =========================
+*.log
+*.tmp
+*.bak
+*.swp
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+*.secret
+config.json   # jangan commit kalau ada info sensitif
+
+# =========================
+# Build / Distribution
+# =========================
+build/
+dist/
+*.egg-info/
+
+# =========================
+# Dataset / Large Files
+# =========================
+data/
+*.zip
