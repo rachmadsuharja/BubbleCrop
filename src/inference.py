@@ -3,18 +3,28 @@ import os
 import json
 import zipfile
 import shutil
+import sys
 import tempfile
 from pathlib import Path
 from ultralytics import YOLO
 
+def resource_path(relative_path):
+    if hasattr(sys, "_MEIPASS"):
+        return Path(sys._MEIPASS) / relative_path
+    return Path(relative_path)
+
 class BubbleCropper:
     def __init__(
         self,
-        model_path="../models/best.pt",
-        config_path="../config.json",
-        classes_path="../classes.json",
+        model_path="models/best.pt",
+        config_path="config.json",
+        classes_path="classes.json",
     ):
-        self.model = YOLO(model_path)
+        model_path = resource_path(model_path)
+        config_path = resource_path(config_path)
+        classes_path = resource_path(classes_path)
+
+        self.model = YOLO(str(model_path))
 
         with open(config_path, "r") as f:
             self.config = json.load(f)

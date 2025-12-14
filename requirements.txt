@@ -1,5 +1,18 @@
-opencv_python==4.12.0.88
-pyside6==6.10.1
-pyside6_addons==6.10.1
-pyside6_essentials==6.10.1
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.9.1+cpu
+torchvision==0.24.1+cpu
+torchaudio==2.9.1+cpu
+
+opencv-python-headless
+pyside6
+
 ultralytics==8.3.237
+
+numpy
+pillow
+pyyaml
+tqdm
+requests
+scipy
+psutil

@@ -9,20 +9,10 @@ from PySide6.QtGui import QFont
 
 try:
     from inference import BubbleCropper
-except ImportError:
-    class BubbleCropper:
-        def __init__(self, model_path, config_path, classes_path):
-            print(f"Initializing BubbleCropper with model: {model_path}")
-            print("Info: Can't import BubbleCropper from src.inference. Using dummy class.")
-        
-        def process(self, input_path):
-            print(f"Executing crop process on file: {input_path}")
-            if input_path.lower().endswith(('.png', '.jpg', '.jpeg')):
-                return "Dummy image process executed."
-            elif input_path.lower().endswith('.zip'):
-                return "Dummy zip process executed."
-            else:
-                 return "Dummy process executed."
+except ImportError as e:
+    raise RuntimeError(
+        f"FATAL: Could not import BubbleCropper from inference module: {e}"
+    )
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -79,7 +69,6 @@ class MainWindow(QMainWindow):
         self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.result_label.setStyleSheet("""
             color: #2e7d32;
-            font-weight: bold;
         """)
         self.result_label.setWordWrap(True)
         main_layout.addWidget(self.result_label)

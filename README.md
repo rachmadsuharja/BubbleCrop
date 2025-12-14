@@ -113,16 +113,24 @@ DirName_bubble2.jpg
 
 ### 1. Create Virtual Environment
 
+Linux
+
 ```bash
 python -m venv venv
-source ./venv/bin/activate      # Linux
-venv\Scripts\activate           # Windows
+source ./venv/bin/activate
+```
+
+Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
 ```
 
 ### 2. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements.txt --no-cache-dir
 ```
 
 ### 3. Run the Application
@@ -156,12 +164,16 @@ dist/app.exe
 
 #### 1. Build with Pyinstaller
 
+Install Pyinstaller
+
 ```bash
-pyinstaller \
-  --onedir \
-  --windowed \
-  --add-data "models/best.pt:models" \
-  ./src/app.py --name BubbleCrop
+pip install pyinstaller
+```
+
+Build
+
+```bash
+pyinstaller BubbleCrop.spec --clean
 ```
 
 Output:
