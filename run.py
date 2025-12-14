@@ -7,5 +7,5 @@ cropper = BubbleCropper(
 )
 
 cropper.process(
-    input_path="Baba Yaga.zip"
+    input_path="file.zip"
 )
