@@ -1,4 +1,7 @@
-# Chat Bubble Auto Cropper
+<h1 align="center">
+  <img src="icon.png" width="40" style="vertical-align: middle;">
+  Bubble Cropper
+</h1>
 
 A **cross-platform desktop application (Arch Linux & Windows)** for **automatically detecting and cropping chat bubbles** from a single conversation image using **YOLO (Object Detection)**.
 
@@ -162,9 +165,7 @@ dist/app.exe
 
 ### 🔹 Linux (Arch)
 
-#### 1. Build with Pyinstaller
-
-Install Pyinstaller
+Install
 
 ```bash
 pip install pyinstaller
@@ -179,11 +180,11 @@ pyinstaller BubbleCrop.spec --clean
 Output:
 
 ```
-dist/
-├── _internal/
-│   ├── PySide6
-│   └── ...
-└── BubbleCrop
+dist/BubbleCrop
+  ├── _internal/
+  │   ├── PySide6
+  │   └── ...
+  └── BubbleCrop
 ```
 
 ---
