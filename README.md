@@ -154,14 +154,24 @@ dist/app.exe
 
 ### 🔹 Linux (Arch)
 
+#### 1. Build with Pyinstaller
+
 ```bash
-pyinstaller ./src/app.py --name BubbleCrop
+pyinstaller \
+  --onedir \
+  --windowed \
+  --add-data "models/best.pt:models" \
+  ./src/app.py --name BubbleCrop
 ```
 
 Output:
 
 ```
-dist/BubbleCrop/BubbleCrop
+dist/
+├── _internal/
+│   ├── PySide6
+│   └── ...
+└── BubbleCrop
 ```
 
 ---
