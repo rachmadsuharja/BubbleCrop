@@ -90,15 +90,19 @@ class BubbleCropper:
                 filename = os.path.basename(file_path)
                 
                 page_name = Path(filename).stem
-                specific_output_dir = os.path.join(main_output_dir, zip_name, page_name)
-                
-                print(f"  > Processing: {filename}")
-                self._process_single_image(file_path, specific_output_dir)
+                zip_output_dir = os.path.join(main_output_dir, zip_name)
+
+                self._process_single_image(
+                    file_path,
+                    zip_output_dir,
+                    prefix = f"{Path(file_path).parent.name}_{Path(filename).stem}"
+                )
+
                 processed_count += 1
 
             print(f"--- Finished. Total {processed_count} images processed from this ZIP. ---")
 
-    def _process_single_image(self, image_path, output_dir):
+    def _process_single_image(self, image_path, output_dir, prefix=None):
         img = cv2.imread(image_path)
         if img is None:
             print(f"Warning: Failed to read image: {image_path}")
@@ -140,7 +144,11 @@ class BubbleCropper:
             crop = img[top_y:bottom_y, 0:w]
 
             output_format = self.config.get('output_format', 'jpg')
-            output_filename = f"bubble_{i + 1}.{output_format}"
+            if prefix:
+                output_filename = f"{prefix}_bubble_{i + 1}.{output_format}"
+            else:
+                output_filename = f"bubble_{i + 1}.{output_format}"
+
             output_path = os.path.join(output_dir, output_filename)
             
             cv2.imwrite(output_path, crop)

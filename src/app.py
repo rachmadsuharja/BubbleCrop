@@ -75,10 +75,15 @@ class MainWindow(QMainWindow):
         self.crop_button.setEnabled(False) 
         main_layout.addWidget(self.crop_button, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        github_label = QLabel("github.com/rachmadsuharja")
-        github_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        github_label.setStyleSheet("color: gray; font-size: 10pt;")
-        main_layout.addWidget(github_label)
+        self.result_label = QLabel("")
+        self.result_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.result_label.setStyleSheet("""
+            color: #2e7d32;
+            font-weight: bold;
+        """)
+        self.result_label.setWordWrap(True)
+        main_layout.addWidget(self.result_label)
+
 
         self.setCentralWidget(central_widget)
 
@@ -95,8 +100,8 @@ class MainWindow(QMainWindow):
         if file_path:
             self.uploaded_file_path = file_path
             self.status_label.setText(f"File Selected: {os.path.basename(file_path)}")
+            self.result_label.setText("")
             self.crop_button.setEnabled(True)
-            QMessageBox.information(self, "File Uploaded", f"Successfully uploaded: {os.path.basename(file_path)}")
         else:
             self.uploaded_file_path = None
             self.status_label.setText("No file uploaded yet.")
@@ -115,7 +120,11 @@ class MainWindow(QMainWindow):
             result = self.cropper.process(
                 input_path=self.uploaded_file_path
             )
-            QMessageBox.information(self, "Process Complete", f"Process 'Crop' executed successfully on:\n{self.uploaded_file_path}")
+            output_dir = self.cropper.get_default_output_dir()
+            self.result_label.setText(
+                f"Successfully saved at:\n{output_dir}"
+            )
+
         except Exception as e:
             QMessageBox.critical(self, "Error Execution", f"An error occurred while executing the crop process: {e}")
 
